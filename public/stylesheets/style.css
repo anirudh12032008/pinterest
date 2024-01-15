@@ -1,5 +1,8 @@
 
-
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: local('Gilroy-Medium'), url(./fonts/Gilroy-Medium.ttf) format('truetype');
+}
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +12,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  font-family: 'Gilroy';
+  font-family: 'Gilroy-Medium';
 }
 
 .content {
