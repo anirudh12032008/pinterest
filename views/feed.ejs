@@ -1,0 +1,27 @@
+<% include ./components/header.ejs %>
+<div class='columns-5 max-w-7xl mx-auto space-y-4'>
+    <% posts.forEach(function(elem){ %>
+        <div onclick="window.location.href='/pins/<%= elem._id%>';" class="relative cursor-zoom-in  group">
+            <img class="rounded-2xl" src="/images/uploads/<%= elem.image %>" alt="Your Image">
+            <div class="absolute rounded-2xl flex flex-col justify-between bottom-0 left-0 h-full w-full bg-black bg-opacity-50 text-white text-center p-2 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                <div class="flex justify-end">
+
+                    <a class="bg-[#E70022] cursor-pointer w-16 mx-2 px-3 text-white font-semibold py-2.5 rounded-3xl" href="/">Save</a>
+                </div>
+                <div class="flex justify-between pl-4">
+                    <div>
+
+                        <h1><%= elem.title %></h1>
+                        <a href="/users/<%= elem.user.username %>" class="text-sm">@<%= elem.user.username %></a>
+                        <!-- <p><%= elem.description.slice(0, 20) + (elem.description.length > 20 ? '...' : '') %></p> -->
+                    </div>
+                    <a class="bg-zinc-300 w-7 h-7 text-zinc-800 font-semibold text-center flex justify-center items-center rounded-full" href="/"><i class="ri-more-fill"></i></a>
+                </div>
+
+            </div>
+          </div>
+    <% }) %>
+
+   </div>
+  
+<% include ./components/footer.ejs %>

@@ -1,0 +1,88 @@
+<% include ./components/header.ejs %>
+
+<div class="">
+    <form action="/createpost" method="post" enctype="multipart/form-data">
+  <div class="head flex justify-between">
+    <h1 class="ml-7 text-4xl font-semibold">Create Pin</h1>
+    <button
+    type="submit"
+    class="block border-2 mt-2 w-1/12 mx-10 px-3 py-2 mb-3 bg-[#E70022] text-white font-semibold rounded-full"
+    href="/"
+    >Publish</
+    >
+</div>    
+<hr class="opacity-100 w-[100vw] font-bold bg-black">
+<div class="flex p-10">
+  <div class="w-1/2 flex items-center justify-center flex-col left overflow-hidden relative">
+    <!-- File input -->
+    <input type="file" name="image" id="imageInput" class="" onchange="displayImage()">
+    
+    <!-- Container for icon and image preview -->
+    <div class="relative flex items-center w-9/12 h-auto justify-center">
+        <!-- Icon to trigger file input -->
+        <label for="imageInput" class="cursor-pointer absolute top-2 right-2">
+            <span id="upload" class="w-8 hidden rounded-full items-center bg-zinc-300 justify-center h-8">
+                <i class="text-zinc-800 ri-pencil-fill"></i>
+            </span>
+        </label>
+
+        <!-- Image preview -->
+        <img id="previewImage" src="" class=" object-cover rounded-2xl hidden" alt="Preview Image">
+    </div>
+</div>
+<div class="right w-1/2">
+   
+      <label class="text-zinc-600 text-base" for="title">Title</label>
+      <input
+        name="title"
+        type="text"
+        placeholder="Add a title"
+        class="mb-2 border-2 rounded-lg block border-zinc-300 w-3/4 px-3 py-2"
+      />
+      <label class="text-zinc-600 text-base" for="description"
+        >Description</label
+      >
+      <textarea
+        name="description"
+        placeholder="Add a detailed description"
+        class="mb-2 border-2 rounded-lg block border-zinc-300 w-3/4 px-3 py-2"
+      ></textarea>
+      <label class="text-zinc-600 text-base" for="board">Board</label>
+      <select
+        name="board"
+        placeholder="Choose a Board"
+        class="mb-2 border-2 rounded-lg block border-zinc-300 w-3/4 px-3 py-2"
+      >
+      <option class="hidden" value=""></option>
+        <option value="board1">board1</option>
+        <option data-editable="true" value="custom">new board</option>
+      </select>
+    </form>
+  </div>
+</div>
+
+</div>
+<script>
+  function displayImage() {
+      const input = document.getElementById('imageInput');
+      const preview = document.getElementById('previewImage');
+      const icon = document.getElementById('upload');
+
+      if (input.files && input.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+              preview.src = e.target.result;
+              // Show the preview image and hide the file input
+              preview.classList.remove('hidden');
+              input.classList.add('hidden');
+              // Show the icon
+              icon.classList.remove('hidden');
+              icon.classList.add('flex');
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+</script>
+<% include ./components/footer.ejs %>

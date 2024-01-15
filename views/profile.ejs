@@ -1,0 +1,55 @@
+<% include ./components/header.ejs %>
+<div class="profile w-full min-h-[88.5vh]">
+  <div class="flex flex-col items-center justify-center w-full">
+    <form id="upform" hidden action="/pfpupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+    </form>
+    <div class="flex flex-col justify-center items-center">
+        <div class="relative">
+            <span class="w-8 rounded-full flex items-center bg-zinc-300 justify-center h-8 absolute right-0 bottom-0">
+                <i id="upload" class="text-zinc-800 ri-pencil-fill "></i>
+            </span>
+            <div class="img bg-zinc-400 h-32 w-32 overflow-hidden rounded-full">
+              <img class="h-full w-full object-cover" src="/images/uploads/<%= user.profilePicture%>" alt="">
+            </div>
+
+        </div>
+      <h1 class="text-5xl font-medium mt-3 text-center"><%= user.fullname %></h1>
+      <p class="text-zinc-700 my-2">@<%= user.username %></p>
+      <p class="text-zinc-700 my-2"><%= user.followers %> Followers</p>
+      <div class="mt-5">
+        <a
+          class="bg-zinc-200 mr-4 text-black font-semibold px-3 py-3 rounded-3xl"
+          href="/edit"
+          >Edit Profile</a
+        >
+        <a
+          class="bg-zinc-200 text-black font-semibold px-3 py-3 rounded-3xl"
+          href="/logout"
+          >Log Out</a
+        >
+      </div>
+    </div>
+    <div class="mt-10 w-full">
+      <h1 class="text-left text-2xl font-semibold px-5">All Pins</h1>
+      <div class="flex cards mt-6 px-10 flex-wrap gap-10">
+        <a href="/users/<%= user.username %>" class="card">
+          <div class="flex bg-zinc-400 w-52 h-40 overflow-hidden rounded-xl">
+            <img class="w-full h-full object-cover" src="/images/uploads/<%= user.posts[user.posts.length - 1]?.image %>" alt="" />
+          </div>
+          <h1 class="text-xl font-medium">Your Uploaded Pins</h1>
+          <h1 class="opacity-80"><%= user?.posts.length %> Pins</h1>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+    const icon = document.getElementById('upload')
+    icon.addEventListener('click', function(){
+        document.querySelector('#upform input').click()
+    })
+    document.querySelector('#upform input').addEventListener('change', function(){
+        document.querySelector('#upform').submit()
+    })
+</script>
+<% include ./components/footer.ejs %>

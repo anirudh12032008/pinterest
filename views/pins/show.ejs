@@ -1,0 +1,68 @@
+<% include ../components/header.ejs %>
+
+<div
+  style="box-shadow: 0px 0px 38px 1px rgba(0, 0, 0, 0.3)"
+  class="flex gap-x-6 my-5 mb-16 pl-6 pr-2 py-6 mx-44 rounded-3xl"
+>
+  <!-- a image in left and text and desc in right -->
+  <div
+    class="left overflow-hidden min-h-[88vh] w-1/2"
+    style="box-shadow: 0px 0px 38px -8px rgba(0, 0, 0, 0.3)"
+  >
+    <img
+      class="object-contain rounded-3xl h-full w-full"
+      src="/images/uploads/<%= post.image %>"
+      alt=""
+    />
+  </div>
+  <div class="right w-1/2 p-6 px-8">
+    <div class="flex justify-end">
+      <a
+        class="bg-[#E70022] cursor-pointer w-16 mx-2 px-3 text-white font-semibold py-2.5 rounded-3xl"
+        href="/"
+        >Save</a
+      >
+    </div>
+
+    <h1 class="mt-10 text-5xl text-zinc-800 font-semibold">
+      <%= post.title %>
+    </h1>
+    <h2 class="mt-8 text-lg"><%= post.description %></h2>
+
+    <h2 class="mt-4"><%= post.likes.length %> Likes</h2>
+    <div class="flex mt-8 items-center justify-between">
+      <div class="left flex items-center">
+        <img
+          class="w-10 h-10 object-cover rounded-full overflow-hidden"
+          src="/images/uploads/<%= post.user.profilePicture %>"
+          alt=""
+        />
+        <a
+          href="/users/<%= post.user.username %>"
+          class="mid ml-4 flex flex-col"
+        >
+          <h2 class="font-semibold"><%= post.user.username %></h2>
+          <h1>
+            <%= post.user.followers %> Followers
+          </h1>
+        </a>
+      </div>
+      <div class="left">
+        <a
+          class="bg-zinc-200 mx-2 px-3 text-zinc-950 font-semibold py-3 rounded-3xl"
+          href="/register"
+          >Follow</a
+        >
+      </div>
+    </div>
+    <div class="flex justify-between mt-5 text-xl items-center">
+      <div class="left">
+        <h1 class="font-semibold">What do you think?</h1>
+      </div>
+      <div class="right mr-9">
+        <a class="px-2 py-2 text-2xl bg-zinc-300 font-semibold rounded-full" href=""> <i class="ri-heart-line "></i> </a>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../components/footer.ejs %>
